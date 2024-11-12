@@ -1,0 +1,32 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "admin",
+            "email": "test@test.com",
+            "role": "01",
+            "job": "管理者"
+        },
+        {
+            "id": 2,
+            "name": "user1",
+            "email": "test@test.com",
+            "role": "02",
+            "job": "サラリーマン"
+        },
+        {
+            "id": 3,
+            "name": "user2",
+            "email": "test@test.com",
+            "role": "02",
+            "job": "学生"
+        },
+        {
+            "id": 4,
+            "name": "user3",
+            "email": "test@test.com",
+            "role": "02",
+            "job": "主婦"
+        }
+    ]
+}

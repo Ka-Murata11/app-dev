@@ -51,6 +51,14 @@ services:
     networks:
       - app-network
 
+  jsonserver:
+    build:
+      context: ./json-server
+    ports:
+      - "3001:3001"  # json-server が 3001 ポートでリッスン
+    networks:
+      - app-network
+
 networks:
   app-network:
 
