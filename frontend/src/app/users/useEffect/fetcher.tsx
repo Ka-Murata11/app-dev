@@ -4,7 +4,7 @@ import { User } from "@/model/user";
 import { revalidatePath } from "next/cache";
 
 export async function GetUsers() {
-    const res = await fetch(`http://jsonserver:3001/users`);
+    const res = await fetch(`http://backend:1323/users`);
     return res.json();
 }
 
