@@ -3,9 +3,7 @@ package main
 import (
 	"myapp/db"
 	"myapp/entity"
-	"myapp/internal/handler"
-	"myapp/internal/repository"
-	"myapp/internal/usecase"
+	"myapp/router"
 
 	"github.com/labstack/echo/v4"
 )
@@ -23,11 +21,7 @@ func main() {
 		panic(err)
 	}
 
-	userRepository := repository.NewUserRepository(db)
-	userUsecase := usecase.NewUserUsecase(userRepository)
-	userHandler := handler.NewUserHandler(userUsecase)
-
-	e.GET("/users", userHandler.GetUsers)
+	router.Router(e)
 
 	e.Logger.Fatal(e.Start(":1323"))
 }

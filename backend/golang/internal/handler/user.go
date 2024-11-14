@@ -25,7 +25,5 @@ func (h *userHandler) GetUsers(c echo.Context) error {
 		return echo.ErrInternalServerError
 	}
 
-	c.JSON(http.StatusOK, users)
-
-	return nil
+	return c.JSON(http.StatusOK, users)
 }
