@@ -2,6 +2,7 @@ package handler
 
 import (
 	"myapp/internal/usecase"
+	"myapp/model"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -25,5 +26,9 @@ func (h *userHandler) GetUsers(c echo.Context) error {
 		return echo.ErrInternalServerError
 	}
 
-	return c.JSON(http.StatusOK, users)
+	res := model.GetUsersResponse{
+		Users: users,
+	}
+
+	return c.JSON(http.StatusOK, res)
 }

@@ -7,24 +7,19 @@ import (
 )
 
 type JwtCustomClaims struct {
-	ID   uint   `json:"id"`
-	Name string `json:"name"`
+	UserID string `json:"user_id"`
+	Role   string `json:"role"`
 	jwt.StandardClaims
-}
-
-type ResponceJWTTokenJSON struct {
-	Name  string `json:"name"`
-	Token string `json:"token"`
 }
 
 var jwtSecret = []byte("secret")
 
-func CreateToken(id uint, name string) (string, error) {
+func CreateToken(userID string, role string) (string, error) {
 	expirationTime := time.Now().Add(30 * time.Minute)
 	// expirationTime := time.Now()
 	claims := &JwtCustomClaims{
-		ID:   id,
-		Name: name,
+		UserID: userID,
+		Role:   role,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expirationTime.Unix(),
 		},

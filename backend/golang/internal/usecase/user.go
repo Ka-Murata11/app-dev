@@ -1,12 +1,12 @@
 package usecase
 
 import (
-	"myapp/entity"
 	"myapp/internal/repository"
+	"myapp/model"
 )
 
 type UserUsecase interface {
-	GetUsers() ([]entity.User, error)
+	GetUsers() ([]model.User, error)
 }
 
 type userUsecase struct {
@@ -17,11 +17,19 @@ func NewUserUsecase(userRepo repository.UserRepository) UserUsecase {
 	return &userUsecase{userRepo}
 }
 
-func (u *userUsecase) GetUsers() ([]entity.User, error) {
+func (u *userUsecase) GetUsers() ([]model.User, error) {
 	users, err := u.userRepo.GetUsers()
 	if err != nil {
 		return nil, err
 	}
 
-	return users, nil
+	resUsers := make([]model.User, len(users))
+	for i, user := range users {
+		resUsers[i].UserID = user.UserID
+		resUsers[i].Email = user.Email
+		resUsers[i].Job = user.Job
+		resUsers[i].Role = user.Role
+	}
+
+	return resUsers, nil
 }

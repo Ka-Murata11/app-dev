@@ -19,7 +19,7 @@ func AuthMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 		}
 
 		// 新しいトークンを生成
-		newToken, err := auth.CreateToken(claims.ID, claims.Name)
+		newToken, err := auth.CreateToken(claims.UserID, claims.Role)
 		if err != nil {
 			return echo.ErrInternalServerError
 		}

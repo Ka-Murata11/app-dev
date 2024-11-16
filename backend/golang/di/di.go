@@ -7,6 +7,19 @@ import (
 	"myapp/internal/usecase"
 )
 
+func InitializeLoginHandler() handler.LoginHandler {
+	db, err := db.Init()
+	if err != nil {
+		panic(err)
+	}
+
+	r := repository.NewUserRepository(db)
+	u := usecase.NewLoginUsecase(r)
+	h := handler.NewLoginHandler(u)
+
+	return h
+}
+
 func InitializeUserHandler() handler.UserHandler {
 	db, err := db.Init()
 	if err != nil {

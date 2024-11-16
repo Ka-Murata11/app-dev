@@ -13,7 +13,7 @@ func SetCookie(c echo.Context, token string) {
 		Name:     "Authorization",
 		Value:    token,
 		Expires:  expirationTime,
-		Path:     "/dashboard",
+		Path:     "/",
 		HttpOnly: true,
 	}
 
