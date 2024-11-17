@@ -1,7 +1,7 @@
 package testutil
 
 import (
-	"myapp/entity"
+	"myapp/infrastructure/entity"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"

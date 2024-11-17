@@ -1,18 +1,20 @@
 package authMiddleware
 
 import (
-	"myapp/auth"
+	"myapp/internal/auth"
 
 	"github.com/labstack/echo/v4"
 )
 
 func AuthMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		// Cookieからトークンを取得
 		cookie, err := c.Cookie("Authorization")
 		if err != nil {
 			return echo.ErrUnauthorized
 		}
 
+		// トークンを検証
 		claims, err := auth.ParseToken(cookie.Value)
 		if err != nil {
 			return echo.ErrUnauthorized

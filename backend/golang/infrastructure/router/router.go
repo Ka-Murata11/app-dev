@@ -1,7 +1,7 @@
 package router
 
 import (
-	"myapp/di"
+	"myapp/infrastructure/di"
 	"myapp/internal/authMiddleware"
 	"myapp/validate"
 

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"myapp/internal/handler"
-	"myapp/model"
+	"myapp/internal/model"
 	"net/http"
 	"net/http/httptest"
 	"testing"

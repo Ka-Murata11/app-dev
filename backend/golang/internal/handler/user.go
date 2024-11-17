@@ -1,8 +1,8 @@
 package handler
 
 import (
+	"myapp/internal/model"
 	"myapp/internal/usecase"
-	"myapp/model"
 	"net/http"
 
 	"github.com/labstack/echo/v4"

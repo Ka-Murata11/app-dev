@@ -1,7 +1,7 @@
 package repository_test
 
 import (
-	"myapp/entity"
+	"myapp/infrastructure/entity"
 	"myapp/internal/repository"
 	"myapp/tests/testutil"
 	"testing"

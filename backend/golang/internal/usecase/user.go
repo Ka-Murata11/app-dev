@@ -1,8 +1,8 @@
 package usecase
 
 import (
+	"myapp/internal/model"
 	"myapp/internal/repository"
-	"myapp/model"
 )
 
 type UserUsecase interface {

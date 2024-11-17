@@ -2,9 +2,10 @@ package usecase
 
 import (
 	"errors"
-	"myapp/entity"
+	"myapp/infrastructure/entity"
+	"myapp/internal/model"
 	"myapp/internal/repository"
-	"myapp/model"
+	"myapp/internal/util"
 
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -16,24 +17,28 @@ type LoginUsecase interface {
 }
 
 type loginUsecase struct {
-	userRepo repository.UserRepository
+	userRepo     repository.UserRepository
+	passwordutil util.PasswordUtil
 }
 
-func NewLoginUsecase(userRepo repository.UserRepository) LoginUsecase {
-	return &loginUsecase{userRepo}
+func NewLoginUsecase(
+	userRepo repository.UserRepository,
+	passwordutil util.PasswordUtil,
+) LoginUsecase {
+	return &loginUsecase{userRepo, passwordutil}
 }
 
 func (u *loginUsecase) SignIn(loginRequest model.SignInRequest) (entity.User, error) {
 	user, err := u.userRepo.GetUserByUserID(loginRequest.UserID)
 	if err != nil {
 		if err == gorm.ErrRecordNotFound {
-			return entity.User{}, errors.New("uesr not found")
+			return entity.User{}, errors.New("user not found")
 		} else {
 			return entity.User{}, errors.New("internal server error")
 		}
 	}
 
-	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(loginRequest.Password))
+	err = u.passwordutil.CompareHashPassword(user.Password, loginRequest.Password)
 	if err != nil {
 		if err == bcrypt.ErrMismatchedHashAndPassword {
 			return entity.User{}, errors.New("password is incorrect")
@@ -55,7 +60,7 @@ func (u *loginUsecase) SignUp(signUpRequest model.SignUpRequest) error {
 		return errors.New("user already exists")
 	}
 
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(signUpRequest.Password), bcrypt.DefaultCost)
+	hashedPassword, err := u.passwordutil.CreateHashPassword(signUpRequest.Password)
 	if err != nil {
 		return errors.New("internal server error")
 	}

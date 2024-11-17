@@ -2,9 +2,9 @@ package usecase_test
 
 import (
 	"errors"
-	"myapp/entity"
+	"myapp/infrastructure/entity"
+	"myapp/internal/model"
 	"myapp/internal/usecase"
-	"myapp/model"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -32,7 +32,7 @@ func (m *MockUserRepository) GetUserByEmail(email string) (entity.User, error) {
 
 func (m *MockUserRepository) CreateUser(user entity.User) error {
 	args := m.Called(user)
-	return args.Error(1)
+	return args.Error(0)
 }
 
 func TestUserUsecase_GetUsers(t *testing.T) {

@@ -1,9 +1,10 @@
 package handler
 
 import (
-	"myapp/auth"
+	"myapp/internal/auth"
+	"myapp/internal/model"
 	"myapp/internal/usecase"
-	"myapp/model"
+
 	"net/http"
 
 	"github.com/labstack/echo/v4"

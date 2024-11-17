@@ -9,7 +9,7 @@ type CustomValidator struct {
 	Validator *validator.Validate
 }
 
-func NewValidator() echo.Validator {
+func NewValidator() *CustomValidator {
 	return &CustomValidator{Validator: validator.New()}
 }
 

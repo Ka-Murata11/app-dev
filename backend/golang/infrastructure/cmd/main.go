@@ -2,8 +2,8 @@ package main
 
 import (
 	"myapp/db"
-	"myapp/entity"
-	"myapp/router"
+	"myapp/infrastructure/entity"
+	"myapp/infrastructure/router"
 
 	"github.com/labstack/echo/v4"
 )

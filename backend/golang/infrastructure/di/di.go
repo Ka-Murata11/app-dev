@@ -5,6 +5,7 @@ import (
 	"myapp/internal/handler"
 	"myapp/internal/repository"
 	"myapp/internal/usecase"
+	"myapp/internal/util"
 )
 
 func InitializeLoginHandler() handler.LoginHandler {
@@ -13,8 +14,9 @@ func InitializeLoginHandler() handler.LoginHandler {
 		panic(err)
 	}
 
+	util := util.NewPasswordUtil()
 	r := repository.NewUserRepository(db)
-	u := usecase.NewLoginUsecase(r)
+	u := usecase.NewLoginUsecase(r, util)
 	h := handler.NewLoginHandler(u)
 
 	return h

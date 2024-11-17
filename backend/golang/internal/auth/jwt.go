@@ -16,7 +16,6 @@ var jwtSecret = []byte("secret")
 
 func CreateToken(userID string, role string) (string, error) {
 	expirationTime := time.Now().Add(30 * time.Minute)
-	// expirationTime := time.Now()
 	claims := &JwtCustomClaims{
 		UserID: userID,
 		Role:   role,

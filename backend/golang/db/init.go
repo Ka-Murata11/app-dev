@@ -1,6 +1,6 @@
 package db
 
-import "myapp/entity"
+import "myapp/infrastructure/entity"
 
 func Migrate() {
 	db, err := Init()
