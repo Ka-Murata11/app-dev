@@ -3,6 +3,7 @@ package router
 import (
 	"myapp/di"
 	"myapp/internal/authMiddleware"
+	"myapp/internal/handler"
 	"myapp/validate"
 
 	"github.com/labstack/echo/v4"
@@ -16,6 +17,7 @@ func Router(e *echo.Echo) {
 	loginHandler := di.InitializeLoginHandler()
 	e.POST("/signup", loginHandler.SignUp)
 	e.POST("/signin", loginHandler.SignIn)
+	e.GET("/user", handler.GetUser)
 
 	// 認証が必要なAPI
 	auth := e.Group("/api")
