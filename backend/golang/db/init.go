@@ -12,4 +12,9 @@ func Migrate() {
 	if err != nil {
 		panic(err)
 	}
+
+	err = db.AutoMigrate(&entity.Task{})
+	if err != nil {
+		panic(err)
+	}
 }

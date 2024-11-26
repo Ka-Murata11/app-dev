@@ -16,7 +16,7 @@ func main() {
 		panic(err)
 	}
 
-	err = db.AutoMigrate(&entity.User{})
+	err = db.AutoMigrate(&entity.User{}, &entity.Task{})
 	if err != nil {
 		panic(err)
 	}
