@@ -14,6 +14,11 @@ export default function Home() {
       <button>ユーザ管理画面へ</button>
     </Link>
     </div>
+    <div>
+    <Link href = "/csv">
+      <button>CSVインポート画面</button>
+    </Link>
+    </div>
     </>
   )
 }
