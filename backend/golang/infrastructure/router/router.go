@@ -27,4 +27,11 @@ func Router(e *echo.Echo) {
 
 	userHandler := di.InitializeUserHandler()
 	auth.GET("/users", userHandler.GetUsers)
+	e.PUT("/updateUser", userHandler.UpdateUser)
+
+	taskHandler := di.InitializeTaskHandler()
+	e.GET("/task", taskHandler.GetTask)
+	e.POST("/task", taskHandler.CreateTask)
+	e.PUT("/task", taskHandler.UpdateTask)
+	e.DELETE("/task", taskHandler.DeleteTask)
 }

@@ -7,6 +7,7 @@ import (
 
 type UserUsecase interface {
 	GetUsers() ([]model.User, error)
+	UpdateUser(updateUserInf model.UpdateUserInf) error
 }
 
 type userUsecase struct {
@@ -32,4 +33,22 @@ func (u *userUsecase) GetUsers() ([]model.User, error) {
 	}
 
 	return resUsers, nil
+}
+
+func (u *userUsecase) UpdateUser(updateUserInf model.UpdateUserInf) error {
+	user, err := u.userRepo.GetUserByUserID(updateUserInf.UserID)
+	if err != nil {
+		return err
+	}
+
+	user.Email = updateUserInf.Email
+	user.Job = updateUserInf.Job
+	user.Role = updateUserInf.Role
+
+	if err := u.userRepo.UpdateUser(user); err != nil {
+		return err
+	}
+
+	return nil
+
 }

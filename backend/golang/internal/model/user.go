@@ -10,3 +10,10 @@ type User struct {
 type GetUsersResponse struct {
 	Users []User `json:"users"`
 }
+
+type UpdateUserInf struct {
+	UserID string `json:"user_id" validate:"required"`
+	Email  string `json:"email" validate:"email"`
+	Role   string `json:"role"`
+	Job    string `json:"job"`
+}

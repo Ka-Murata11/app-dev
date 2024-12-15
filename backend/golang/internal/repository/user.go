@@ -11,6 +11,7 @@ type UserRepository interface {
 	GetUserByUserID(userID string) (entity.User, error)
 	GetUserByEmail(email string) (entity.User, error)
 	CreateUser(user entity.User) error
+	UpdateUser(user entity.User) error
 }
 
 type userRepository struct {
@@ -54,6 +55,14 @@ func (r *userRepository) CreateUser(user entity.User) error {
 		if err == gorm.ErrDuplicatedKey {
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (r *userRepository) UpdateUser(user entity.User) error {
+	if err := r.db.Save(&user).Error; err != nil {
+		return err
 	}
 
 	return nil

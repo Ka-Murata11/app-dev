@@ -34,3 +34,16 @@ func InitializeUserHandler() handler.UserHandler {
 
 	return h
 }
+
+func InitializeTaskHandler() handler.TaskHandler {
+	db, err := db.Init()
+	if err != nil {
+		panic(err)
+	}
+
+	r := repository.NewTaskRepository(db)
+	u := usecase.NewTaskUsecase(r)
+	h := handler.NewTaskHandler(u)
+
+	return h
+}
