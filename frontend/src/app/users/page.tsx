@@ -1,24 +1,18 @@
-import React from 'react';
+import { User } from '@/model/user';
+import UserTableEffect from './userTableEffect';
+// import CreateUserForm from './addUser';
 import Link from 'next/link'
+import { GetUsers } from './fetcher';
 
 const Users = async () => {
-
+    const users: User[] = await GetUsers();
+    
     return (
         <>
-            <h1>ユーザ管理 選択</h1>
-            
+            {/* <CreateUserForm/> */}
+            <UserTableEffect users={users}/>
             <div>
-                <Link href='/users/searchByUseAction'>
-                    <button>searchByUseAction</button>
-                </Link>
-            </div>
-            <div>
-                <Link href='/users/useEffect'>
-                    <button>useEffect</button>
-                </Link>
-            </div>
-            <div>
-                <Link href='/'>
+                <Link href='/users'>
                     <button>戻る</button>
                 </Link>
             </div>

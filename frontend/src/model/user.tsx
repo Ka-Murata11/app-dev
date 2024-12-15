@@ -1,8 +1,7 @@
 "use server";
 
 export interface User {
-    id: number;
-    name: string;
+    user_id: string;
     email: string;
     role: string;
     job: string;
